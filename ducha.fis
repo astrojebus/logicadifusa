@@ -1,0 +1,59 @@
+[System]
+Name='ducha'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=2
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='temperatura'
+Range=[-20 20]
+NumMFs=3
+MF1='frio':'trapmf',[-30 -30 -15 0]
+MF2='agradable':'trimf',[-10 0 10 0]
+MF3='caliente':'trapmf',[0 15 30 30]
+
+[Input2]
+Name='flujo'
+Range=[-1 1]
+NumMFs=3
+MF1='suave':'trapmf',[-3 -3 -0.8 0]
+MF2='bueno':'trimf',[-0.4 0 0.4 0]
+MF3='fuerte':'trapmf',[0 0.8 3 3]
+
+[Output1]
+Name='frio'
+Range=[-1 1]
+NumMFs=5
+MF1='cerrarRapidamente':'trimf',[-1 -0.6 -0.3 0]
+MF2='cerrarLentamente':'trimf',[-0.6 -0.3 0 0]
+MF3='estable':'trimf',[-0.3 0 0.3 0]
+MF4='abrirLentamente':'trimf',[0 0.3 0.6 0]
+MF5='abrirRapidamente':'trimf',[0.3 0.6 1 0]
+
+[Output2]
+Name='caliente'
+Range=[-1 1]
+NumMFs=5
+MF1='cerrarRapidamente':'trimf',[-1 -0.6 -0.3 0]
+MF2='cerrarLentamente':'trimf',[-0.6 -0.3 0 0]
+MF3='estable':'trimf',[-0.3 0 0.3 0]
+MF4='abrirLentamente':'trimf',[0 0.3 0.6 0]
+MF5='abrirRapido':'trimf',[0.3 0.6 1 0]
+
+[Rules]
+1 1, 4 5 (1) : 1
+1 2, 2 4 (1) : 1
+1 3, 1 2 (1) : 1
+2 1, 4 4 (1) : 1
+2 2, 3 3 (1) : 1
+2 3, 2 2 (1) : 1
+3 1, 5 4 (1) : 1
+3 2, 4 2 (1) : 1
+3 3, 2 1 (1) : 1
